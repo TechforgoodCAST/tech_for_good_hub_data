@@ -20,6 +20,7 @@ defmodule TechForGoodHub.Router do
 
     resources "/organisations", OrganisationController
     resources "/proposals", ProposalController
+    resources "/tags", TagController
   end
 
   # Other scopes may use custom stacks.

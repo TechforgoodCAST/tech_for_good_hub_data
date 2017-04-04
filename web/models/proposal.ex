@@ -9,7 +9,7 @@ defmodule TechForGoodHub.Proposal do
     field :video_url, :string
     field :video_transcript, :string
     field :development_stage, :string
-    field :amount_applied, :integer
+    field :amount_applied, :float
     belongs_to :organisation, TechForGoodHub.Organisation
 
     timestamps()
