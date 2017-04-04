@@ -1,0 +1,14 @@
+section#content.grid-wrap.sec-features role="main"
+  div.grid-container.grid-1.clearfix
+    header.section-header
+      h2.section-title.hs-primary-medium.hb-bottom-large Projects
+      div.divider
+      p.section-description.fs-large.fader.fader-on Here's a list of projects, filtered by x.
+    div.grid-items.clearfix
+      = for proposal <- @proposals do
+        div.grid-col.grid-1x-col.sec-item.sec-feature
+          div.contents-wrap.clearfix
+            h3.hs-secondary-small
+              a href="#{organisation_path(@conn, :show, proposal.organisation_id)}" = proposal.organisation.name
+            p = String.slice(proposal.summary, 0..100)
+            a.ac-btn-alt.fw-bolder href="#{proposal_path(@conn, :show, proposal)}" target="_blank" More on this project 
