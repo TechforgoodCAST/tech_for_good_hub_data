@@ -17,6 +17,9 @@ defmodule TechForGoodHub.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/organisations", OrganisationController
+    resources "/proposals", ProposalController
   end
 
   # Other scopes may use custom stacks.

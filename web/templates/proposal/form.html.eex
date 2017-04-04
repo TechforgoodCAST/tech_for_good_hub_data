@@ -1,0 +1,59 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :summary, class: "control-label" %>
+    <%= textarea f, :summary, class: "form-control" %>
+    <%= error_tag f, :summary %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :location, class: "control-label" %>
+    <%= text_input f, :location, class: "form-control" %>
+    <%= error_tag f, :location %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :graphic_url, class: "control-label" %>
+    <%= text_input f, :graphic_url, class: "form-control" %>
+    <%= error_tag f, :graphic_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :website, class: "control-label" %>
+    <%= text_input f, :website, class: "form-control" %>
+    <%= error_tag f, :website %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :video_url, class: "control-label" %>
+    <%= text_input f, :video_url, class: "form-control" %>
+    <%= error_tag f, :video_url %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :video_transcript, class: "control-label" %>
+    <%= textarea f, :video_transcript, class: "form-control" %>
+    <%= error_tag f, :video_transcript %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :development_stage, class: "control-label" %>
+    <%= text_input f, :development_stage, class: "form-control" %>
+    <%= error_tag f, :development_stage %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :amount_applied, class: "control-label" %>
+    <%= number_input f, :amount_applied, class: "form-control" %>
+    <%= error_tag f, :amount_applied %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
