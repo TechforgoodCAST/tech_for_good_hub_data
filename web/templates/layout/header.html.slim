@@ -1,0 +1,24 @@
+div.mh-placeholder
+header#main-header.main-header.mh-fixed.mh-nontransparent.mh-moving
+  div.main-header-inner-wrap.clearfix
+    div.logo-wrap
+      = link "Tech For Good", to: page_path(@conn, :index), class: "logo-text", rel: "home"
+
+    nav.main-menu-wrap role="navigation" aria-label="Primary Menu"
+      ul.main-menu.clearfix
+        / li= link "Compare Your Project", to: "#coming-soon"
+        li= link "Browse Projects", to: proposal_path(@conn, :index)
+        li= link "View Analysis", to: "#coming-soon"
+        li
+          a href="http://techforgoodhub.com/" Main Site
+            ' 
+            i.fa.fa-external-link
+        li.close-menu
+          a.ac-btn.btn-small.ac-btn-mobile-close href="#"
+            i.fa.fa-close
+
+    div.main-header-right.clearfix
+      div.main-header-btns
+        span.ac-btn-h.ac-btn-mobile.ac-btn-mob
+          a.ac-btn-mobile-menu href="#"
+            i.fa.fa-bars
