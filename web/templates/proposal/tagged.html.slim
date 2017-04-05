@@ -1,9 +1,9 @@
 section#content.grid-wrap.sec-features role="main"
   div.grid-container.grid-1.clearfix
     header.section-header
-      h2.section-title.hs-primary-medium.hb-bottom-large Projects
+      h2.section-title.hs-primary-medium.hb-bottom-large= @tag.name
       div.divider
-      p.section-description.fs-large.fader.fader-on Here's a list of projects, filtered by x.
+      p.section-description.fs-large.fader.fader-on Projects tagged #{@tag.name} in #{@tag.category}.
     div.grid-items.clearfix
       = for proposal <- @proposals do
         div.grid-col.grid-1x-col.sec-item.sec-feature

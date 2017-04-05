@@ -5,6 +5,7 @@ defmodule TechForGoodHub.Tag do
     field :name, :string
     field :slug, :string
     field :category, :string
+    many_to_many :proposals, TechForGoodHub.Proposal, join_through: "taggings"
 
     timestamps()
   end
