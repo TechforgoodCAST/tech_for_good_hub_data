@@ -9,7 +9,7 @@ defmodule TechForGoodHub.Proposal do
     field :video_url, :string
     field :video_transcript, :string
     field :development_stage, :string
-    field :amount_applied, :float
+    field :amount_applied, :decimal
     belongs_to :organisation, TechForGoodHub.Organisation
     many_to_many :tags, TechForGoodHub.Tag, join_through: "taggings"
 

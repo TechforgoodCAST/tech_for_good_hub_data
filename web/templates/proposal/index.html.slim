@@ -4,6 +4,22 @@ section#content.grid-wrap.sec-features role="main"
       h2.section-title.hs-primary-medium.hb-bottom-large Projects
       div.divider
       p.section-description.fs-large.fader.fader-on Here's a list of projects, filtered by x.
+
+      h4 Approach
+      select name="approach-type"
+        option value=""
+        = render_options @tags, "approach-type"
+
+      h4 Tech
+      select name="tech-type">
+        option value=""
+        = render_options @tags, "tech-type"
+
+      h4 Problem
+      select name="key-problems"
+        option value=""
+        = render_options @tags, "key-problems"
+
     div.grid-items.clearfix
       = for proposal <- @proposals do
         div.grid-col.grid-1x-col.sec-item.sec-feature

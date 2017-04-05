@@ -6,7 +6,8 @@ defmodule TechForGoodHub.ProposalController do
   def index(conn, _params) do
     proposals = Repo.all(Proposal)
                 |> Repo.preload([:organisation, :tags])
-    render(conn, "index.html", proposals: proposals)
+    tags = Repo.all(TechForGoodHub.Tag)
+    render(conn, "index.html", proposals: proposals, tags: tags)
   end
 
   def show(conn, %{"id" => id}) do
