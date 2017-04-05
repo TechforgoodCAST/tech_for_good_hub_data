@@ -165,3 +165,17 @@ button:active {
 .footer-creds a:active {
     color: #ea4d5e;
 }
+
+.logo-wrap {
+  text-transform: none;
+  font-size: 20px;
+}
+
+.main-header .main-header-btns .ac-btn-h {
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+.main-header-btns .ac-btn-h {
+  top: -55%;
+}
