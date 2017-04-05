@@ -5,26 +5,8 @@ defmodule TechForGoodHub.ProposalController do
 
   def index(conn, _params) do
     proposals = Repo.all(Proposal)
-                |> Repo.preload(:organisation)
+                |> Repo.preload([:organisation, :tags])
     render(conn, "index.html", proposals: proposals)
-  end
-
-  def new(conn, _params) do
-    changeset = Proposal.changeset(%Proposal{})
-    render(conn, "new.html", changeset: changeset)
-  end
-
-  def create(conn, %{"proposal" => proposal_params}) do
-    changeset = Proposal.changeset(%Proposal{}, proposal_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _proposal} ->
-        conn
-        |> put_flash(:info, "Proposal created successfully.")
-        |> redirect(to: proposal_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
   end
 
   def show(conn, %{"id" => id}) do
@@ -32,35 +14,9 @@ defmodule TechForGoodHub.ProposalController do
     render(conn, "show.html", proposal: proposal)
   end
 
-  def edit(conn, %{"id" => id}) do
-    proposal = Repo.get!(Proposal, id)
-    changeset = Proposal.changeset(proposal)
-    render(conn, "edit.html", proposal: proposal, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "proposal" => proposal_params}) do
-    proposal = Repo.get!(Proposal, id)
-    changeset = Proposal.changeset(proposal, proposal_params)
-
-    case Repo.update(changeset) do
-      {:ok, proposal} ->
-        conn
-        |> put_flash(:info, "Proposal updated successfully.")
-        |> redirect(to: proposal_path(conn, :show, proposal))
-      {:error, changeset} ->
-        render(conn, "edit.html", proposal: proposal, changeset: changeset)
-    end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    proposal = Repo.get!(Proposal, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(proposal)
-
-    conn
-    |> put_flash(:info, "Proposal deleted successfully.")
-    |> redirect(to: proposal_path(conn, :index))
+  def tagged(conn, %{"slug" => slug}) do
+    tags = Proposal.tagged(slug)
+    tag = Repo.get_by(TechForGoodHub.Tag, slug: slug)
+    render(conn, "tagged.html", tag: tag, proposals: tags)
   end
 end

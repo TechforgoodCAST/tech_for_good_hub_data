@@ -1,6 +1,0 @@
-<h2>Edit proposal</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: proposal_path(@conn, :update, @proposal) %>
-
-<%= link "Back", to: proposal_path(@conn, :index) %>

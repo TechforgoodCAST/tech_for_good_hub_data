@@ -3,6 +3,8 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   alias TechForGoodHub.Repo
   alias TechForGoodHub.Organisation
   alias TechForGoodHub.Proposal
+  alias TechForGoodHub.Tag
+  alias TechForGoodHub.Tagging
 
   @shortdoc "Imports data for Tech For Good Hub"
 
@@ -20,16 +22,18 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
     data = Poison.decode! read_json(file_path)
 
     Repo.delete_all(Organisation)
+    Repo.delete_all(Tag)
 
     Enum.each(data, fn(map) ->
       create_or_insert_organisation(map)
       create_proposal(map)
+      |> create_tags(map)
     end)
   end
 
   defp create_or_insert_organisation(map) do
     case Repo.get_by(Organisation, name: org_values(map)["org_name"]) do
-      nil  -> %Organisation{name: org_values(map)["org_name"]}
+      nil -> %Organisation{name: org_values(map)["org_name"]}
       organisation -> organisation
     end
     |> Organisation.changeset(org_values(map))
@@ -39,9 +43,46 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   defp create_proposal(map) do
     changeset = Proposal.changeset %Proposal{}, proposal_values(map)
     case Repo.insert(changeset) do
-      {:ok, _} -> IO.puts "Proposal created successfully."
+      {:ok, proposal} -> proposal
       {:error, changeset} -> IO.puts changeset.errors
     end
+  end
+
+  defp create_tags(proposal, map) do
+    # TODO: refactor
+    get_in(map, ["form_data"])
+    |> Map.take(["approach-type", "key-problems", "target-audience", "tech-type"])
+    |> Enum.each(fn(i) ->
+      {k, v} = i
+      case v do
+        [] -> false
+        _ -> Enum.each(v, fn(name) ->
+          case name do
+            nil -> false
+            "" -> false
+            _ -> (
+              changeset = Tag.changeset %Tag{}, %{name: name, category: k}
+
+              case Repo.get_by(Tag, slug: Ecto.Changeset.get_field(changeset, :slug)) do
+                nil -> %Tag{slug: Ecto.Changeset.get_field(changeset, :slug)}
+                tag -> tag
+              end
+              |> Tag.changeset(%{name: name, category: k})
+              |> Repo.insert_or_update
+              |> case do
+                {:ok, tag} -> create_taggings(proposal.id, tag.id)
+                {:error, error} -> error
+              end
+            )
+          end
+        end)
+      end
+    end)
+  end
+
+  defp create_taggings(proposal_id, tag_id) do
+    Tagging.changeset(%Tagging{}, %{proposal_id: proposal_id, tag_id: tag_id})
+    |> Repo.insert
   end
 
   defp org_values(map) do
@@ -63,6 +104,7 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
       "video_url"         => map["video"],
       "graphic_url"       => map["graphic"],
       "website"           => map["project_website"],
+      "amount_applied"    => map["amount"],
       "development_stage" => map["form_data"]["development-stage"],
     })
   end
