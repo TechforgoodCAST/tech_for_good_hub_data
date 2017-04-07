@@ -11,7 +11,7 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   @moduledoc """
     Imports data for Tech For Good Hub.
 
-    It expects a path to a JSON file as argument.
+    It expects a local path or URL to a JSON file as argument.
 
       mix tech_for_good_hub.import "/path/to/file.json"
   """
