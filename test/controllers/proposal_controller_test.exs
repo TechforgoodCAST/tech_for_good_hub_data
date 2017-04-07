@@ -14,6 +14,11 @@ defmodule TechForGoodHub.ProposalControllerTest do
     assert html_response(conn, 200) =~ "Show proposal"
   end
 
+  test "shows entries in a category", %{conn: conn} do
+    conn = get conn, proposal_path(conn, :category, "category")
+    assert html_response(conn, 200) =~ "category"
+  end
+
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
       get conn, proposal_path(conn, :show, -1)
