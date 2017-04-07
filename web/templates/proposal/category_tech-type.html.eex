@@ -1,0 +1,110 @@
+        <!-- Load Charts.js -->
+       <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js'></script>
+
+        <canvas id='chart_tech'></canvas>
+        <script>
+            var ctx = document.getElementById('chart_tech').getContext('2d');
+            ctx.canvas.width  = 800;
+            ctx.canvas.height = 500;
+            var myNewChart = new Chart(ctx,{
+              type: 'horizontalBar',
+              data: {
+    'datasets': [
+        {
+            'label': 'Not successful',
+            'data': [
+                26.0,
+                22.0,
+                7.0,
+                6.0,
+                6.0,
+                5.0,
+                5.0,
+                3.0,
+                5.0,
+                6.0
+            ],
+            'backgroundColor': 'rgb(252, 158, 185)'
+        },
+        {
+            'label': 'Longlisted',
+            'data': [
+                18.0,
+                2.0,
+                3.0,
+                4.0,
+                1.0,
+                2.0,
+                2.0,
+                3.0,
+                1.0,
+                1.0
+            ],
+            'backgroundColor': 'rgb(0, 128, 156)'
+        },
+        {
+            'label': 'Successful',
+            'data': [
+                4.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0,
+                1.0,
+                1.0,
+                0.0
+            ],
+            'backgroundColor': 'rgb(234,77,94)'
+        }
+    ],
+    'labels': [
+        'App',
+        'Website',
+        'Directory',
+        'Sharing',
+        'Hardware',
+        'Chat',
+        'Social media',
+        'Open source',
+        'Data gathering',
+        'Content'
+    ]
+}, options: {
+    'legend': {
+        'position': 'bottom',
+        'labels': {
+            'fontSize': 16,
+            'fontFamily': '\'Roboto\',sans-serif'
+        }
+    },
+    'scales': {
+        'yAxes': [
+            {
+                'gridLines': {
+                    'display': false,
+                    'drawBorder': false
+                },
+                'ticks': {
+                    'fontSize': 20,
+                    'fontFamily': '\'Roboto\',sans-serif'
+                }
+            }
+        ],
+        'xAxes': [
+            {
+                'gridLines': {
+                    'display': false,
+                    'drawBorder': true
+                },
+                'ticks': {
+                    'fontSize': 20,
+                    'fontFamily': '\'Roboto\',sans-serif'
+                },
+                'stacked': true
+            }
+        ]
+    }
+} });
+</script>

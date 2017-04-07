@@ -38,7 +38,8 @@ defmodule TechForGoodHub.ProposalController do
     proposals = Proposal
                 |> Proposal.category(category)
                 |> Repo.all
+    tags = Repo.all(TechForGoodHub.Tag)
 
-    render conn, "category.html", category: category, proposals: proposals
+    render conn, "category.html", category: category, proposals: proposals, tags: tags
   end
 end

@@ -26,4 +26,9 @@
       %{ name: "Problem", category: "key-problems" }
     ]
   end
+
+  def categories(category) do
+    categories()
+    |> Enum.filter(fn(c) -> c.category == category end)
+  end
 end
