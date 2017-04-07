@@ -6,28 +6,10 @@ section#content.grid-wrap.sec-features role="main"
       p.section-description.fs-large.fader.fader-on Here's a list of projects, filtered by x.
 
       #filter
-        h4 Approach
-        select name="approach-type" class="filter"
-          option value=""
-          = render_options @tags, "approach-type"
-
-        h4 Audience
-        select name="target-audience" class="filter"
-          option value=""
-          = render_options @tags, "target-audience"
-
-        h4 Tech
-        select name="tech-type" class="filter"
-          option value=""
-          = render_options @tags, "tech-type"
-        h4 Tech
-        select name="tech-type" class="filter"
-          option value=""
-          = render_options @tags, "tech-type"
-
-        h4 Problem
-        select name="key-problems" class="filter"
-          option value=""
-          = render_options @tags, "key-problems"
+        = for category <- categories() do
+          h4= link category.name, to: proposal_path(@conn, :category, category.category)
+          select name="#{category.category}" class="filter"
+            option value=""
+            = render_options @tags, category.category
 
     = render "_proposals_list.html", assigns

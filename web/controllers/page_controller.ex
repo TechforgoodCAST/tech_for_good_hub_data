@@ -4,4 +4,8 @@ defmodule TechForGoodHub.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+  def analysis(conn, _params) do
+    render conn, "analysis.html"
+  end
 end
