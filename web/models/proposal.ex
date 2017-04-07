@@ -9,7 +9,7 @@ defmodule TechForGoodHub.Proposal do
     field :video_url, :string
     field :video_transcript, :string
     field :development_stage, :string
-    field :amount_applied, :float
+    field :amount_applied, :decimal
     belongs_to :organisation, TechForGoodHub.Organisation
     many_to_many :tags, TechForGoodHub.Tag, join_through: "taggings"
 
@@ -27,15 +27,32 @@ defmodule TechForGoodHub.Proposal do
   end
 
   @doc """
-  Returns a list of proposals tagged with `slug`
+  Returns an Ecto.Query for `query` model tagged with `slug`
   """
-  def tagged(slug) do
-    TechForGoodHub.Repo.all(
-      from p in TechForGoodHub.Proposal,
-      join: t in assoc(p, :tags),
-      where: t.slug == ^slug,
-      select: p,
-      preload: [:tags, :organisation]
-    )
+  def tagged(query, slug) do
+    from proposal in query,
+    join: tag in assoc(proposal, :tags),
+    where: tag.slug == ^slug,
+    select: proposal,
+    preload: [:tags, :organisation]
+  end
+
+  @doc """
+  Returns an Ecto.Query for `query` model tagged with a list of `tags` names
+  """
+  def filter_by_tags(query, tags) do
+    if tags == ["all"] do # REVIEW: consider alternative guard clause
+      from proposal in query,
+      select: proposal,
+      preload: [:organisation, :tags]
+    else
+      from proposal in query,
+      join: tag in assoc(proposal, :tags),
+      where: tag.slug in ^tags,
+      group_by: proposal.id,
+      having: count(proposal.id) == ^length(tags),
+      select: proposal,
+      preload: [:organisation, :tags]
+    end
   end
 end

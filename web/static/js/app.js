@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html";
+import 'phoenix_html'
 
 // Import local files
 //
@@ -20,11 +20,16 @@ import "phoenix_html";
 
 // import socket from "./socket"
 
-import MainView from './views/main';
+import MainView from './views/main'
+import ProposalView from './views/proposal'
 
-function handleDOMContentLoaded() {
-  const view = new MainView();
-  view.mobileMenu();
+function handleDOMContentLoaded () {
+  const view = new MainView()
+  view.mobileMenu()
+  if (window.location.pathname === '/proposals') {
+    const proposalView = new ProposalView()
+    proposalView.filter()
+  }
 }
 
-window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false)
