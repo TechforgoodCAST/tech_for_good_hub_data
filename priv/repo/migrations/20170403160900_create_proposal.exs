@@ -10,7 +10,7 @@ defmodule TechForGoodHub.Repo.Migrations.CreateProposal do
       add :video_url, :string, size: 510
       add :video_transcript, :text
       add :development_stage, :string
-      add :amount_applied, :float
+      add :amount_applied, :decimal
       add :organisation_id, references(:organisations, on_delete: :delete_all)
 
       timestamps()
