@@ -1,0 +1,14 @@
+#proposals.grid-items.clearfix
+  = for proposal <- @proposals do
+    div.grid-col.grid-1x-col.sec-item.sec-feature
+      div.contents-wrap.clearfix
+        h3.hs-secondary-small
+          a href="#{organisation_path(@conn, :show, proposal.organisation_id)}"
+            = proposal.organisation.name
+
+        = for tag <- proposal.tags do
+          a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest"
+            = tag.name
+
+        p = String.slice(proposal.summary, 0..100)
+        a.ac-btn-alt.fw-bolder href="#{proposal_path(@conn, :show, proposal)}" More on this project

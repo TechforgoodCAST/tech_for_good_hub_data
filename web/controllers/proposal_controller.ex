@@ -16,8 +16,20 @@ defmodule TechForGoodHub.ProposalController do
   end
 
   def tagged(conn, %{"slug" => slug}) do
-    tags = Proposal.tagged(slug)
     tag = Repo.get_by(TechForGoodHub.Tag, slug: slug)
+    tags = Proposal
+           |> Proposal.tagged(slug)
+           |> Repo.all
+
     render(conn, "tagged.html", tag: tag, proposals: tags)
+  end
+
+  def filter(conn, params) do
+    tags = String.split params["tags"], ","
+    proposals = Proposal
+                |> Proposal.filter_by_tags(tags)
+                |> Repo.all
+
+    render conn, "_proposals_list.html", layout: false, proposals: proposals
   end
 end

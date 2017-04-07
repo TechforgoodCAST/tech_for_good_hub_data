@@ -22,6 +22,7 @@ defmodule TechForGoodHub.Router do
 
     resources "/proposals", ProposalController
     get "/proposals/tagged/:slug", ProposalController, :tagged
+    get "/proposals/filter/:tags", ProposalController, :filter
 
     resources "/tags", TagController
   end
