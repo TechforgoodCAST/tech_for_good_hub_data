@@ -112,7 +112,7 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   defp read_json(file) do
     case File.read file do
       {:ok, data} -> data
-      {:error} -> HTTPoison.get(file)
+      {:error, _} -> HTTPoison.get(file)
       |> case do
         {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
           body
