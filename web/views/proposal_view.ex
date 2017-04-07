@@ -1,4 +1,4 @@
-defmodule TechForGoodHub.ProposalView do
+  defmodule TechForGoodHub.ProposalView do
   use TechForGoodHub.Web, :view
 
   @doc """
@@ -16,5 +16,14 @@ defmodule TechForGoodHub.ProposalView do
       "<option value='#{tag.slug}'>#{tag.name}</option>"
     end)
     |> Phoenix.HTML.raw
+  end
+
+  def categories do
+    [
+      %{ name: "Approach", category: "approach-type" },
+      %{ name: "Audience", category: "target-audience" },
+      %{ name: "Tech", category: "tech-type" },
+      %{ name: "Problem", category: "key-problems" }
+    ]
   end
 end
