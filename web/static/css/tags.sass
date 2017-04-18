@@ -1,0 +1,29 @@
+@import "variables"
+
+$amount: 80
+
+a[class*="approach-type"], a[class*="focus"],
+a[class*="target-audience"], a[class*="tech-type"]
+  color: white !important
+  &.muted
+    background: darken(white, $amount) !important
+
+a[class*="approach-type"]
+  background: $teal !important
+  &.muted
+    background: desaturate($teal, $amount) !important
+
+a[class*="focus"]
+  background: $blue !important
+  &.muted
+    background: desaturate($blue, $amount) !important
+
+a[class*="target-audience"]
+  background: $purple !important
+  &.muted
+    background: desaturate($purple, $amount) !important
+
+a[class*="tech-type"]
+  background: $orange !important
+  &.muted
+    background: desaturate($orange, $amount) !important
