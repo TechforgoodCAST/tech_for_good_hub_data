@@ -1,56 +1,54 @@
 footer#main-footer.footer-wrap.clearfix
-  div.footer-widgets"
-    div.footer-sidebars.grid-1.clearfix
+  .footer-widgets
+    .footer-sidebars.grid-1.clearfix
 
-      div#footer-sidebar-1.grid-col.grid-2x3-col.footer-sidebar
+      #footer-sidebar-1.grid-col.grid-2x3-col.footer-sidebar
         aside#recent-posts-4.widget_recent_entries.widget.clearfix
           h3.widget-title.hs-secondary-smallest.ls-min
-            span Latest Blog Posts
+            span Project funded by
           ul
             li
-              a href="http://techforgoodhub.com/techforgood-new-website" 
-                ' Hello and welcome to our new website!
-              span.post-date March 30, 2017
+              a href='http://www.comicrelief.com/' target='_blank' Comic Relief
             li
-              a href="http://techforgoodhub.com/tech-for-good-longlist" 
-                ' Tech for Good longlist
-              span.post-date March 25, 2017
-            li
-              a href="http://techforgoodhub.com/comic-relief-techforgood" 
-                ' Comic Relief and Tech for Good
-              span.post-date November 12, 2016
-            li
-              a href="http://techforgoodhub.com/techforgood-launch" 
-                ' Tech for Good programme will help charities use technology to create social change
-              span.post-date September 8, 2016
+              a href='http://www.phf.org.uk/' target='_blank' Paul Hamlyn Foundation
 
-      div#footer-sidebar-2.grid-col.grid-2x3-col.footer-sidebar
+      #footer-sidebar-2.grid-col.grid-2x3-col.footer-sidebar
         aside#pages-3.widget_pages.widget.clearfix
           h3.widget-title.hs-secondary-smallest.ls-min
             span Site Map
           ul
-            li.page_item.page-item-14
-              a href="http://techforgoodhub.com/about-us" About Us
-            li.page_item.page-item-27.current_page_item
-              a href="http://techforgoodhub.com/previous-projects" Previous Projects
-            li.page_item.page-item-28
-              a href="http://techforgoodhub.com/current-projects" Current Projects
-            li.page_item.page-item-30
-              a href="http://techforgoodhub.com/blog" Blog
+            li= link "Home", to: page_path(@conn, :index)
+            li= link "Browse Projects", to: proposal_path(@conn, :index)
+            li= link "View Analysis", to: page_path(@conn, :analysis)
+            li
+              a href="#coming-soon" Download Data
+                ' 
+                i.fa.fa-download
+            li
+              a href="http://techforgoodhub.com/" Main Site
+                ' 
+                i.fa.fa-external-link
+            li
+              a href="https://github.com/TechforgoodCAST/tech_for_good_hub_data" target='_blank'
+                i.fa.fa-github
+                '  Github
+                i.fa.fa-external-link
 
-      div#footer-sidebar-3.grid-col.grid-2x3-col.footer-sidebar.last-col
+      #footer-sidebar-3.grid-col.grid-2x3-col.footer-sidebar.last-col
         aside#text-3.widget_text.widget.clearfix
           h3.widget-title.hs-secondary-smallest.ls-min
             span Contact Us
-          div.textwidget 
+          .textwidget
             ' Contact us via email:
-            a href="mailto:someone@example.com?Subject=Hello%20again" target="_top" techforgoodfunding@gmail.com
+            a href='mailto:techforgoodfunding@gmail.com?Subject=Tech%20For%20Good%20Hub%20Data' techforgoodfunding@gmail.com
 
-  div.footer-credits
-    div.footer-creds.clearfix
-      div.footer-creds-copyright
-        span
-          span.footer-copyright
-            ' © #{DateTime.utc_now.year} Tech For Good. All views and content are those of researchers and programme participants. Businessx theme designed by
-            a href="//www.acosmin.com/" title="Premium WordPress Themes &amp; Plugins by Acosmin" Acosmin
-            '.
+  .footer-credits
+    .footer-creds.clearfix
+      .footer-creds-copyright
+        span.footer-copyright
+          ' © #{DateTime.utc_now.year}
+          a href='http://techforgoodhub.com/' target='_blank' Tech For Good Hub
+          '. All views and content are those of the research and evaluation team.
+          ' Built by
+          a href='https://www.beehivegiving.org/' target='_blank' www.beehivegiving.org
+          '.
