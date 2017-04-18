@@ -1,6 +1,25 @@
 section#content.grid-wrap.sec-features
-  div.grid-container.grid-1.clearfix
-    header.section-header
-      h2.section-title.hs-primary-medium.hb-bottom-large Tech For Good
-      div.divider
-      p.section-description.fs-large.fader.fader-on /data
+  .grid-container.grid-1.clearfix
+    .section-description
+      p
+        ' In October 2016
+        a href='http://www.comicrelief.com/' target='_blank'
+          ' Comic Relief
+        ' with
+        a href='http://www.phf.org.uk/' target='_blank'
+         ' Paul Hamlyn Foundation
+        ' launched UK Tech for Good 2016-17, a funding programme. It was designed to include a simple first stage application process, which consisted of a publically available video, 100 word summary and a visual presentation. This attracted 145 applications which were reviewed by staff at both Paul Hamlyn Foundation to create a long list of our top 50 in November 2016 and to select our top 10 in March 2017.
+
+      p The application process was designed to be digital-first - to find and fund those projects ready to succeed, but could also increase knowledge and collaboration amongst charities, digital agencies and funders.
+
+      p
+        a href='https://www.beehivegiving.org/' target='_blank'
+          ' Beehive Giving
+        ' /
+        a href='http://www.wearecast.org.uk/' target='_blank'
+          ' CAST
+        ' have analysed the applications to help identify patterns in demand, looking at the technology employed, stage of development, focus issues and target audiences. They have also created this web app to showcase the applications and make it easier to find relevant projects.
+
+      = link 'Explore the projects', to: proposal_path(@conn, :index), class: 'ac-btn btn-big'
+      em<>  or
+      strong= link 'Read The Analysis Findings', to: page_path(@conn, :analysis)
