@@ -21,9 +21,9 @@
   def categories do
     [
       %{ name: "Approach", category: "approach-type" },
+      %{ name: "Focus", category: "focus" },
       %{ name: "Audience", category: "target-audience" },
-      %{ name: "Tech", category: "tech-type" },
-      %{ name: "Problem", category: "key-problems" }
+      %{ name: "Tech", category: "tech-type" }
     ]
   end
 
