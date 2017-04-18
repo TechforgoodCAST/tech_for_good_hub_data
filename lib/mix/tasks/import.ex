@@ -51,7 +51,7 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   defp create_tags(proposal, map) do
     # TODO: refactor
     get_in(map, ["form_data"])
-    |> Map.take(["approach-type", "key-problems", "target-audience", "tech-type"])
+    |> Map.take(["approach-type", "focus", "target-audience", "tech-type"])
     |> Enum.each(fn(i) ->
       {k, v} = i
       case v do

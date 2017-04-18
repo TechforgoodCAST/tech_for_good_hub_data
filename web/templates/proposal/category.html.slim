@@ -1,14 +1,13 @@
 section#content.grid-wrap.sec-features role="main"
-  div.grid-container.grid-1.clearfix
+  .grid-container.grid-1.clearfix
     header.section-header
       h2.section-title.hs-primary-medium.hb-bottom-large = @category
-      div.divider
+      .divider
       p.section-description.fs-large.fader.fader-on Here's a list of projects, filtered by x.
-      
-    .grid-items.clearfix
-      .grid-col.grid-2x-col.sec-item.sec-feature
-        = render "category_#{@category}.html", assigns
-        
+
+    .grid-container.grid-2.clearfix
+      = render "category_#{@category}.html", assigns
+
       .grid-col.grid-2x-col.sec-item.sec-feature
         #filter
           = for category <- categories(@category) do
@@ -16,5 +15,5 @@ section#content.grid-wrap.sec-features role="main"
             select name="#{category.category}" class="filter"
               option value=""
               = render_options @tags, category.category
-        
+
     = render "_proposals_list.html", assigns

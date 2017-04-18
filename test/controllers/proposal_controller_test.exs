@@ -15,8 +15,11 @@ defmodule TechForGoodHub.ProposalControllerTest do
   end
 
   test "shows entries in a category", %{conn: conn} do
-    conn = get conn, proposal_path(conn, :category, "category")
-    assert html_response(conn, 200) =~ "category"
+    ["approach-type", "focus", "target-audience", "tech-type"]
+    |> Enum.each(fn(category) ->
+      conn = get conn, proposal_path(conn, :category, category)
+      assert html_response(conn, 200) =~ "category"
+    end)
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
