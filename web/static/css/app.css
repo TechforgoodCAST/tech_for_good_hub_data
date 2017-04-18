@@ -78,6 +78,10 @@ button:active {
     background-color: #c43d51;
 }
 
+div.mh-placeholder {
+    margin-top: 91px;
+}
+
 .main-header.mh-transparent .actions-menu a,
 .main-header.mh-transparent .ac-btn-alt.alt2 {
     border-color: #4de5ea !important;
