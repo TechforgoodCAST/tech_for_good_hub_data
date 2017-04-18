@@ -1,21 +1,22 @@
 export default class ProposalView {
   filter () {
-    this.getTemplate()
+    this._getTemplate()
     document.getElementById('filter').addEventListener('change', (e) => {
-      return this.getTemplate()
+      return this._getTemplate()
     }, false)
   };
 
-  getTemplate () {
-    const tags = this.tags()
+  _getTemplate () {
+    const tags = this._tags()
     if (tags.length > 0) {
-      this.makeRequest(`/proposals/filter/${tags}`)
+      const selectors = tags.split(',').reduce((acc, slug) => acc + `:not(.${slug})`, '.tag')
+      this._makeRequest(`/proposals/filter/${tags}`, () => this._muteInactive(selectors))
     } else {
-      this.makeRequest('/proposals/filter/all')
+      this._makeRequest('/proposals/filter/all')
     }
   }
 
-  tags () {
+  _tags () {
     const filters = document.getElementsByClassName('filter')
     return [...filters].map(function (select) {
       return [...select.options].filter(option => option.selected).map(option => option.value)
@@ -24,13 +25,20 @@ export default class ProposalView {
     }).join(',')
   }
 
-  makeRequest (url) {
-    var r = new window.XMLHttpRequest()
-    r.open('GET', url, true)
-    r.onreadystatechange = function () {
-      if (r.readyState !== 4 || r.status !== 200) return
-      document.getElementById('proposals').innerHTML = r.responseText
+  _muteInactive (selectors) {
+    document.querySelectorAll(selectors).forEach((el) => {
+      return el.classList.add('muted')
+    })
+  }
+
+  _makeRequest (url, callback) {
+    const req = new window.XMLHttpRequest()
+    req.open('GET', url, true)
+    req.onreadystatechange = function () {
+      if (req.readyState !== 4 || req.status !== 200) return
+      document.getElementById('proposals').innerHTML = req.responseText
+      if (typeof callback === 'function') callback()
     }
-    r.send()
+    req.send()
   }
 }

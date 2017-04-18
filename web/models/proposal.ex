@@ -48,8 +48,6 @@ defmodule TechForGoodHub.Proposal do
     preload: [:tags, :organisation]
   end
 
-
-
   @doc """
   Returns an Ecto.Query for `query` model tagged with a list of `tags` names
   """
