@@ -1,5 +1,6 @@
-  defmodule TechForGoodHub.ProposalView do
+defmodule TechForGoodHub.ProposalView do
   use TechForGoodHub.Web, :view
+  import Phoenix.HTML.SimplifiedHelpers.Truncate
 
   @doc """
     Renders HTML option tags for a given `Tag.category`.
@@ -14,6 +15,29 @@
     |> Enum.uniq
     |> Enum.map(fn(tag) ->
       "<option value='#{tag.slug}'>#{tag.name}</option>"
+    end)
+    |> Phoenix.HTML.raw
+  end
+
+  def render_regions() do
+    # @TODO shouldn't be hardcoded here, duplicated with models/proposal.ex:69
+    regions = %{
+      "region-london" => "London",
+      "region-north-west" => "North West",
+      "region-north-east" => "North East",
+      "region-south-west" => "South West",
+      "region-south-east" => "South East",
+      "region-yorkshire-and-the-humber" => "Yorkshire and the Humber",
+      "region-east-midlands" => "East Midlands",
+      "region-eastern" => "Eastern",
+      "region-west-midlands" => "West Midlands",
+      "region-scotland" => "Scotland",
+      "region-northern-ireland" => "Northern Ireland",
+      "region-wales" => "Wales"
+    }
+    regions
+    |> Enum.map(fn {region_slug, region} ->
+      "<option value='#{region_slug}'>#{region}</option>"
     end)
     |> Phoenix.HTML.raw
   end

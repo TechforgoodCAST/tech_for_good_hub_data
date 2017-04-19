@@ -52,6 +52,11 @@ button {
     background-color: #ea4d5e;
 }
 
+.ac-btn.tag {
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
 .ac-btn:hover,
 input[type=submit]:hover,
 input[type=reset]:hover,
@@ -76,6 +81,10 @@ input[type=reset]:active,
 input[type=button]:focus,
 button:active {
     background-color: #c43d51;
+}
+
+div.mh-placeholder {
+    margin-top: 91px;
 }
 
 .main-header.mh-transparent .actions-menu a,
@@ -178,4 +187,15 @@ button:active {
 
 .main-header-btns .ac-btn-h {
   top: -55%;
+}
+
+#proposals.grid-items > div.sec-feature:nth-child(3n) {
+    margin-right: 0;
+}
+#proposals.grid-items > div.sec-feature:nth-child(3n+1) {
+	clear: both;
+}
+
+.category-filter {
+  margin-bottom: 8px;
 }

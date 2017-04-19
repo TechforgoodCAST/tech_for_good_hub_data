@@ -98,7 +98,7 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
   end
 
   defp proposal_values(map) do
-    Map.take(map, ["org_name", "summary", "amount", "location", "project_website", "video", "video_transcript", "development_stage"])
+    Map.take(map, ["org_name", "summary", "amount", "location", "project_website", "video", "video_transcript", "development_stage", "status", "region"])
     |> Map.merge(%{
       "organisation_id"   => Repo.get_by(Organisation, name: map["org_name"]).id,
       "video_url"         => map["video"],
@@ -106,6 +106,9 @@ defmodule Mix.Tasks.TechForGoodHub.Import do
       "website"           => map["project_website"],
       "amount_applied"    => map["amount"],
       "development_stage" => map["form_data"]["development-stage"],
+      "status"            => map["status"],
+      "region"            => map["region"],
+      "year"              => 2017,
     })
   end
 

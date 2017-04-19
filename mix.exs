@@ -19,7 +19,7 @@ defmodule TechForGoodHub.Mixfile do
   def application do
     [mod: {TechForGoodHub, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :phoenix_html_simplified_helpers]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule TechForGoodHub.Mixfile do
      {:gettext, "~> 0.11"},
      {:phoenix_slime, "~> 0.8.0"},
      {:cowboy, "~> 1.0"},
+     {:phoenix_html_simplified_helpers, "~> 1.1.1"},
      {:httpoison, "~> 0.10.0"}]
   end
 

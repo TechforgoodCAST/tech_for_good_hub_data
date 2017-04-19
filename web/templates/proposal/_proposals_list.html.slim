@@ -1,14 +1,17 @@
+p 
+  = "#{length(@proposals)} proposal"
+  = if length(@proposals)!=1 do "s" end
 #proposals.grid-items.clearfix
   = for proposal <- @proposals do
-    div.grid-col.grid-1x-col.sec-item.sec-feature
+    div.grid-col.grid-2x3-col.sec-item.sec-feature
       div.contents-wrap.clearfix
         h3.hs-secondary-small
-          a href="#{organisation_path(@conn, :show, proposal.organisation_id)}"
+          a href="#{proposal_path(@conn, :show, proposal)}"
             = proposal.organisation.name
 
         = for tag <- proposal.tags do
-          a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest tag #{tag.slug}"
+          a href="#{proposal_path @conn, :tagged, tag.slug}" title="#{tag.category}" class="ac-btn btn-smallest tag #{tag.slug}"
             = tag.name
 
-        p = String.slice(proposal.summary, 0..100)
+        p = truncate(proposal.summary, length: 100, separator: " ")
         a.ac-btn-alt.fw-bolder href="#{proposal_path(@conn, :show, proposal)}" More on this project
