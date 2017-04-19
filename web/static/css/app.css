@@ -52,6 +52,11 @@ button {
     background-color: #ea4d5e;
 }
 
+.ac-btn.tag {
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
 .ac-btn:hover,
 input[type=submit]:hover,
 input[type=reset]:hover,

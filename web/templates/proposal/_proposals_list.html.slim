@@ -7,7 +7,7 @@
             = proposal.organisation.name
 
         = for tag <- proposal.tags do
-          a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest tag #{tag.slug}"
+          a href="#{proposal_path @conn, :tagged, tag.slug}" title="#{tag.category}" class="ac-btn btn-smallest tag #{tag.slug}"
             = tag.name
 
         p = String.slice(proposal.summary, 0..100)
