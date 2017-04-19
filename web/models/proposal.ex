@@ -80,9 +80,12 @@ defmodule TechForGoodHub.Proposal do
       "region-wales" => "Wales"
     }
 
-    if tags == ["all"] do # REVIEW: consider alternative guard clause
-      tags = []
-    end
+    tags =
+      if tags == ["all"] do # REVIEW: consider alternative guard clause
+        []
+      else
+        tags
+      end
 
     # base query
     query = from proposal in query,
@@ -102,12 +105,19 @@ defmodule TechForGoodHub.Proposal do
     end
 
     # check status
-    if length(status_tags)>0 do
-      query = from proposal in query, where: proposal.status in ^status_tags
-    end
+    query = if length(status_tags)>0 do
+        from proposal in query, where: proposal.status in ^status_tags
+      else
+        query
+      end
     # check region
-    if length(region_tags)>0 do
-      query = from proposal in query, where: proposal.region in ^region_tags
-    end
+    query =
+      if length(region_tags)>0 do
+        from proposal in query, where: proposal.region in ^region_tags
+      else
+        query
+      end
+
+    query
   end
 end
