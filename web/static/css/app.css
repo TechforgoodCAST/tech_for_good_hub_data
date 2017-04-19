@@ -188,3 +188,10 @@ div.mh-placeholder {
 .main-header-btns .ac-btn-h {
   top: -55%;
 }
+
+#proposals.grid-items > div.sec-feature:nth-child(3n) {
+    margin-right: 0;
+}
+#proposals.grid-items > div.sec-feature:nth-child(3n+1) {
+	clear: both;
+}
