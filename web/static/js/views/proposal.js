@@ -36,7 +36,7 @@ export default class ProposalView {
     req.open('GET', url, true)
     req.onreadystatechange = function () {
       if (req.readyState !== 4 || req.status !== 200) return
-      document.getElementById('proposals').innerHTML = req.responseText
+      document.getElementById('proposals-container').innerHTML = req.responseText
       if (typeof callback === 'function') callback()
     }
     req.send()
