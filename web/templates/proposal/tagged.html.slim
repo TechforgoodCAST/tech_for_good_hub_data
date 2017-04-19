@@ -1,20 +1,13 @@
-section#content.grid-wrap.sec-features role="main"
-  div.grid-container.grid-1.clearfix
-    header.section-header
+section#content.grid-wrap
+  .grid-container.grid-1.clearfix
+    .section-header
       h2.section-title.hs-primary-medium.hb-bottom-large= @tag.name
-      div.divider
-      p.section-description.fs-large.fader.fader-on Projects tagged #{@tag.name} in #{@tag.category}.
-    div.grid-items.clearfix
-      = for proposal <- @proposals do
-        div.grid-col.grid-1x-col.sec-item.sec-feature
-          div.contents-wrap.clearfix
-            h3.hs-secondary-small
-              a href="#{organisation_path(@conn, :show, proposal.organisation_id)}"
-                = proposal.organisation.name
+      .divider
+      p.section-description.fs-large.fader.fader-on
+        ' Projects tagged
+        strong>= @tag.name
+        ' in
+        strong= category_name(@tag.category)
 
-            = for tag <- proposal.tags do
-              a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest"
-                = tag.name
-
-            p = String.slice(proposal.summary, 0..100)
-            a.ac-btn-alt.fw-bolder href="#{proposal_path(@conn, :show, proposal)}" More on this project
+    #proposals-container.grid-col.grid-4x-col.last-col
+      = render "_proposals_list.html", assigns

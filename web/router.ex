@@ -19,13 +19,9 @@ defmodule TechForGoodHub.Router do
     get "/", PageController, :index
     get "/analysis", PageController, :analysis
 
-    resources "/organisations", OrganisationController
-
     resources "/proposals", ProposalController
     get "/proposals/tagged/:slug", ProposalController, :tagged
     get "/proposals/filter/:tags", ProposalController, :filter
-
-    resources "/tags", TagController
   end
 
   # Other scopes may use custom stacks.

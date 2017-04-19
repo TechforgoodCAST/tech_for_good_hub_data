@@ -57,8 +57,15 @@ defmodule TechForGoodHub.ProposalView do
     ]
   end
 
-  def categories(category) do
-    categories()
-    |> Enum.filter(fn(c) -> c.category == category end)
+  @doc """
+    Returns the 'name' key from 'categories/0' given a `category`.
+
+      iex> TechForGoodHub.ProposalView.category_name("missing")
+      nil
+      iex> TechForGoodHub.ProposalView.category_name("tech-type")
+      "Tech"
+  """
+  def category_name(category) do
+    Enum.find(categories(), fn(c) -> c.category == category end)[:name]
   end
 end
