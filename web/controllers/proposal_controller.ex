@@ -33,14 +33,4 @@ defmodule TechForGoodHub.ProposalController do
 
     render conn, "_proposals_list.html", layout: false, proposals: proposals
   end
-
-  def category(conn, params) do
-    category = params["category"]
-    proposals = Proposal
-                |> Proposal.category(category)
-                |> Repo.all
-    tags = Repo.all(TechForGoodHub.Tag)
-
-    render conn, "category.html", category: category, proposals: proposals, tags: tags
-  end
 end

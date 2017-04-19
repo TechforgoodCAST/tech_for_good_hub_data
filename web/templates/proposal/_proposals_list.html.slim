@@ -1,6 +1,7 @@
-p 
-  = "#{length(@proposals)} proposal"
+p
+  = "#{length(@proposals)} project"
   = if length(@proposals)!=1 do "s" end
+
 #proposals.grid-items.clearfix
   = for proposal <- @proposals do
     div.grid-col.grid-2x3-col.sec-item.sec-feature

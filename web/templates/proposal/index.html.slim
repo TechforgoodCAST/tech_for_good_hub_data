@@ -3,30 +3,43 @@ section#content.grid-wrap role="main"
     header.section-header
       h2.section-title.hs-primary-medium.hb-bottom-large Projects
       div.divider
-      p.section-description.fs-large.fader.fader-on Projects that applied to the Tech for Good funding programme
+      p.section-description.fs-large.fader.fader-on Projects that applied to the UK Tech for Good Fund (2016-17)
 
     .grid-col.grid-1x-col
       #filter
         = for category <- categories() do
           .category-filter
-            h4 class="category-header #{category.category}"= link category.name, to: proposal_path(@conn, :category, category.category)
+            h4 class="category-header #{category.category}" = category.name
+
+            small
+              / = link "Jump to analysis", to: proposal_path(@conn, :category, category.category)
+              a href="/analysis##{category.category}" Jump to analysis
+
             select name="#{category.category}" class="filter"
               option value=""
               = render_options @tags, category.category
-        
+
         .category-filter
           h4 class="category-header region" Region
+
+          small
+            a href="/analysis#region" Jump to analysis
+
           select name="region" class="filter"
             option value=""
             = render_regions()
-        
+
         .category-filter
           h4 class="category-header status" Status
-          select name="region" class="filter"
+
+          small
+            a href="/analysis#status" Jump to analysis
+
+          select name="status" class="filter"
             option value=""
             option value="status-unsuccessful" Unsuccessful
             option value="status-longlisted" Unsuccessful - longlisted
             option value="status-funded" Funded
-            
+
     #proposals-container.grid-col.grid-3x-col.last-col
       = render "_proposals_list.html", assigns
