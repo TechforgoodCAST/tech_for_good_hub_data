@@ -41,17 +41,6 @@ defmodule TechForGoodHub.Proposal do
   end
 
   @doc """
-  Returns an Ecto.Query for `query` model in category `category`
-  """
-  def category(query, category) do
-    from proposal in query,
-    join: tag in assoc(proposal, :tags),
-    where: tag.category == ^category,
-    select: proposal,
-    preload: [:tags, :organisation]
-  end
-
-  @doc """
   Returns an Ecto.Query for `query` model tagged with a list of `tags` names
   """
 

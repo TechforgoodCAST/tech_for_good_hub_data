@@ -28,18 +28,6 @@ defmodule TechForGoodHub.ProposalTest do
     assert Enum.count(proposals) == 1
   end
 
-  test "category query returns proposals with a given category" do
-    alias TechForGoodHub.Tag
-    alias TechForGoodHub.Tagging
-    {:ok, tag} = Repo.insert(Tag.changeset(%Tag{}, %{name: "Name", category: "Category"}))
-    {:ok, proposal} = Repo.insert(Proposal.changeset(%Proposal{}, @valid_attrs))
-    Repo.insert(Tagging.changeset(%Tagging{}, %{proposal_id: proposal.id, tag_id: tag.id}))
-
-    proposals = Repo.all Proposal.category(Proposal, tag.category)
-
-    assert Enum.count(proposals) == 1
-  end
-
   # TODO: refactor
   test "#filter_by_tags/2 query returns proposals for a list of tag names" do
     alias TechForGoodHub.Tag
