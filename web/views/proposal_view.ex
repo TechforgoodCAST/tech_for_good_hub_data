@@ -1,5 +1,6 @@
-  defmodule TechForGoodHub.ProposalView do
+defmodule TechForGoodHub.ProposalView do
   use TechForGoodHub.Web, :view
+  import Phoenix.HTML.SimplifiedHelpers.Truncate
 
   @doc """
     Renders HTML option tags for a given `Tag.category`.

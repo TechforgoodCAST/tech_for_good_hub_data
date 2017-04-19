@@ -1,5 +1,6 @@
 p 
-  = "#{length(@proposals)} proposals"
+  = "#{length(@proposals)} proposal"
+  = if length(@proposals)!=1 do "s" end
 #proposals.grid-items.clearfix
   = for proposal <- @proposals do
     div.grid-col.grid-2x3-col.sec-item.sec-feature
@@ -12,5 +13,5 @@ p
           a href="#{proposal_path @conn, :tagged, tag.slug}" title="#{tag.category}" class="ac-btn btn-smallest tag #{tag.slug}"
             = tag.name
 
-        p = String.slice(proposal.summary, 0..100)
+        p = truncate(proposal.summary, length: 100, separator: " ")
         a.ac-btn-alt.fw-bolder href="#{proposal_path(@conn, :show, proposal)}" More on this project
