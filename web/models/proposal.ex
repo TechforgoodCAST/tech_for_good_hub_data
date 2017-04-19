@@ -10,6 +10,9 @@ defmodule TechForGoodHub.Proposal do
     field :video_transcript, :string
     field :development_stage, :string
     field :amount_applied, :decimal
+    field :status, :string
+    field :year, :integer
+    field :region, :string
     belongs_to :organisation, TechForGoodHub.Organisation
     many_to_many :tags, TechForGoodHub.Tag, join_through: "taggings"
 
@@ -21,9 +24,9 @@ defmodule TechForGoodHub.Proposal do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:organisation_id, :summary, :location, :graphic_url, :website, :video_url, :video_transcript, :development_stage, :amount_applied])
+    |> cast(params, [:organisation_id, :summary, :location, :graphic_url, :website, :video_url, :video_transcript, :development_stage, :amount_applied, :status, :region, :year])
     |> assoc_constraint(:organisation)
-    |> validate_required([:summary, :location, :graphic_url, :video_url])
+    |> validate_required([:summary, :location, :graphic_url, :video_url, :status])
   end
 
   @doc """

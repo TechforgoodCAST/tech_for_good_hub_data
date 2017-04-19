@@ -7,6 +7,9 @@ section#content.grid-wrap.sec-features role="main"
     
       .grid-col.grid-2x-col
         .content
+          p 
+            strong #{@proposal.status} 
+            span< "(#{@proposal.year})"
           p
             = @proposal.summary
             
@@ -24,7 +27,7 @@ section#content.grid-wrap.sec-features role="main"
           ul
             li
               strong> Location:
-              = @proposal.location
+              span #{@proposal.location} (#{@proposal.region})
             li
               strong> Development stage:
               = @proposal.development_stage
@@ -33,10 +36,11 @@ section#content.grid-wrap.sec-features role="main"
               a href="#{@proposal.organisation.website}" #{@proposal.organisation.name}
               
   
+    p.clearfix
       = for tag <- @proposal.tags do
         a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest tag #{tag.slug}"
           = tag.name
               
-            
-    = link "Back", to: proposal_path(@conn, :index)
+    p    
+      = link "< Back", to: proposal_path(@conn, :index)
     
