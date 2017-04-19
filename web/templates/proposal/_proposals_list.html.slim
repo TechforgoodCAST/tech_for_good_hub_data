@@ -4,8 +4,8 @@ p
 
 #proposals.grid-items.clearfix
   = for proposal <- @proposals do
-    div.grid-col.grid-2x3-col.sec-item.sec-feature
-      div.contents-wrap.clearfix
+    .grid-col.grid-2x3-col.sec-item.sec-feature
+      .contents-wrap.clearfix
         h3.hs-secondary-small
           a href="#{proposal_path(@conn, :show, proposal)}"
             = proposal.organisation.name
