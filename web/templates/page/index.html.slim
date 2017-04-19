@@ -1,6 +1,6 @@
-section#content.grid-wrap.sec-features
+section#content.grid-wrap
   .grid-container.grid-1.clearfix
-    .section-description
+    .grid-col.grid-posts-col
       p
         ' In October 2016
         a href='http://www.comicrelief.com/' target='_blank'
@@ -23,3 +23,37 @@ section#content.grid-wrap.sec-features
       = link 'Explore the projects', to: proposal_path(@conn, :index), class: 'ac-btn btn-big'
       em<>  or
       strong= link 'Read The Analysis Findings', to: page_path(@conn, :analysis)
+
+    .grid-col.grid-sidebar-col.last-col.clearfix
+      ul.timeline
+        .title UK Tech for Good Fund (2016-17)
+        li
+          .date October
+          .line
+            .year 2016
+          .label
+            strong> 145
+            ' initial applications recieved
+        li
+          .date November
+          .line
+          .label
+            strong> 50
+            ' applicants longlisted
+        li
+          .date December
+          .line
+          .label
+            strong> 36
+            ' applicants invited to submit a full application
+        li
+          .date Jan - Feb
+          .line
+            .year 2017
+          .label Assessments and panel meeting
+        li
+          .date March
+          .line.current.end
+          .label
+            strong> 10
+            ' grants approved
