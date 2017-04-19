@@ -12,6 +12,7 @@ defmodule TechForGoodHub.ProposalController do
 
   def show(conn, %{"id" => id}) do
     proposal = Repo.get!(Proposal, id)
+               |> Repo.preload([:organisation, :tags])
     render(conn, "show.html", proposal: proposal)
   end
 

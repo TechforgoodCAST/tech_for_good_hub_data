@@ -1,0 +1,42 @@
+section#content.grid-wrap.sec-features role="main"
+  div.grid-container.grid-1.clearfix
+    header.section-header
+      h2.section-title.hs-primary-medium.hb-bottom-large Proposal from #{@proposal.organisation.name}
+      
+    .grid-items.clearfix
+    
+      .grid-col.grid-2x-col
+        .content
+          p
+            = @proposal.summary
+            
+      .grid-col.grid-2x-col.last-col
+          p
+            = if @proposal.graphic_url do
+            a.ac-btn.btn-biggest href="#{@proposal.graphic_url}" Infographic
+            = if @proposal.video_url do
+            span.ac-btns-or
+            a.ac-btn.btn-biggest href="#{@proposal.video_url}" Video
+          p
+            - if @proposal.website do
+            a.ac-btn.btn-biggest href="#{@proposal.website}" Project website
+          
+          ul
+            li
+              strong> Location:
+              = @proposal.location
+            li
+              strong> Development stage:
+              = @proposal.development_stage
+            li
+              strong> Applicant:
+              a href="#{@proposal.organisation.website}" #{@proposal.organisation.name}
+              
+  
+      = for tag <- @proposal.tags do
+        a href="#{proposal_path @conn, :tagged, tag.slug}" class="ac-btn btn-smallest tag #{tag.slug}"
+          = tag.name
+              
+            
+    = link "Back", to: proposal_path(@conn, :index)
+    
