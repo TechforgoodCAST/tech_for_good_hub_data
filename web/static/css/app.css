@@ -195,3 +195,7 @@ div.mh-placeholder {
 #proposals.grid-items > div.sec-feature:nth-child(3n+1) {
 	clear: both;
 }
+
+.category-filter {
+  margin-bottom: 8px;
+}
