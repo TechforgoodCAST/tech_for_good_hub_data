@@ -11,7 +11,7 @@ defmodule TechForGoodHub.ProposalControllerTest do
   test "shows chosen resource", %{conn: conn} do
     proposal = Repo.insert! %Proposal{}
     conn = get conn, proposal_path(conn, :show, proposal)
-    assert html_response(conn, 200) =~ "Show proposal"
+    assert html_response(conn, 200) =~ "Proposal from"
   end
 
   test "shows entries in a category", %{conn: conn} do
