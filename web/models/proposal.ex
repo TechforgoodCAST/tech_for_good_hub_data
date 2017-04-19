@@ -54,19 +54,60 @@ defmodule TechForGoodHub.Proposal do
   @doc """
   Returns an Ecto.Query for `query` model tagged with a list of `tags` names
   """
+
+
   def filter_by_tags(query, tags) do
+
+    # @TODO Shouldn't be hardcoded and shouldn't be stored here
+    statuses = %{
+      "status-unsuccessful" => "Unsuccessful",
+      "status-longlisted" => "Unsuccessful - longlisted",
+      "status-funded" => "Funded"
+    }
+
+    regions = %{
+      "region-london" => "London",
+      "region-north-west" => "North West",
+      "region-north-east" => "North East",
+      "region-south-west" => "South West",
+      "region-south-east" => "South East",
+      "region-yorkshire-and-the-humber" => "Yorkshire and the Humber",
+      "region-east-midlands" => "East Midlands",
+      "region-eastern" => "Eastern",
+      "region-west-midlands" => "West Midlands",
+      "region-scotland" => "Scotland",
+      "region-northern-ireland" => "Northern Ireland",
+      "region-wales" => "Wales"
+    }
+
     if tags == ["all"] do # REVIEW: consider alternative guard clause
-      from proposal in query,
+      tags = []
+    end
+
+    # base query
+    query = from proposal in query,
       select: proposal,
       preload: [:organisation, :tags]
-    else
-      from proposal in query,
-      join: tag in assoc(proposal, :tags),
-      where: tag.slug in ^tags,
-      group_by: proposal.id,
-      having: count(proposal.id) == ^length(tags),
-      select: proposal,
-      preload: [:organisation, :tags]
+
+    status_tags = Enum.filter_map(tags, fn(tag) -> String.starts_with? tag, "status-" end, fn(tag) -> statuses[tag] end)
+    region_tags = Enum.filter_map(tags, fn(tag) -> String.starts_with? tag, "region-" end, fn(tag) -> regions[tag] end)
+    tags = Enum.filter(tags, fn(tag) -> !String.starts_with? tag, ["status-", "region-"] end)
+
+    if length(tags)>0 do
+      query = from proposal in query,
+        join: tag in assoc(proposal, :tags),
+        where: tag.slug in ^tags,
+        group_by: proposal.id,
+        having: count(proposal.id) == ^length(tags)
+    end
+
+    # check status
+    if length(status_tags)>0 do
+      query = from proposal in query, where: proposal.status in ^status_tags
+    end
+    # check region
+    if length(region_tags)>0 do
+      query = from proposal in query, where: proposal.region in ^region_tags
     end
   end
 end
