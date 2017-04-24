@@ -1,0 +1,19 @@
+/* TEAM */
+	Name: David Kane
+	Website: http://drkane.co.uk/
+
+	Name: Suraj Vadgama
+  Website: http://suninthesky.co.uk/
+
+/* THANKS */
+	Name: Beehive Giving
+	Website: https://www.beehivegiving.org/
+
+	Name: CAST
+	Website: http://www.wearecast.org.uk/
+
+	Name: Comic Relief
+	Website: http://www.comicrelief.com/
+
+	Name: Paul Hamlyn Foundation
+	Website: http://www.phf.org.uk/
