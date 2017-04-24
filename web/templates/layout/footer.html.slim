@@ -8,7 +8,8 @@ footer#main-footer.footer-wrap.clearfix
             span Project funded by
           ul
             li
-              a href='http://www.comicrelief.com/' target='_blank' Comic Relief
+              a target="_blank" href="http://www.comicrelief.com/"
+                = img_tag('/images/funded-by-comic-relief.png')
             li
               a href='http://www.phf.org.uk/' target='_blank' Paul Hamlyn Foundation
 
@@ -25,7 +26,7 @@ footer#main-footer.footer-wrap.clearfix
                 ' 
                 i.fa.fa-download
             li
-              a href="http://techforgoodhub.com/" Main Site
+              a href="http://techforgoodhub.co.uk/" Main Site
                 ' 
                 i.fa.fa-external-link
             li
@@ -47,7 +48,7 @@ footer#main-footer.footer-wrap.clearfix
       .footer-creds-copyright
         span.footer-copyright
           ' © #{DateTime.utc_now.year}
-          a href='http://techforgoodhub.com/' target='_blank' Tech For Good Hub
+          a href='http://techforgoodhub.co.uk/' target='_blank' Tech For Good
           '. All views and content are those of the research and evaluation team.
           ' Built by
           a href='https://www.beehivegiving.org/' target='_blank'
