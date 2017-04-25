@@ -2,11 +2,15 @@ defmodule TechForGoodHub.ProposalController do
   use TechForGoodHub.Web, :controller
 
   alias TechForGoodHub.Proposal
+  alias TechForGoodHub.Tag
 
   def index(conn, _params) do
     proposals = Repo.all(Proposal)
                 |> Repo.preload([:organisation, :tags])
-    tags = Repo.all(TechForGoodHub.Tag)
+    tags = Tag
+           |> Tag.get_with_counts()
+           |> Repo.all
+
     render(conn, "index.html", proposals: proposals, tags: tags)
   end
 

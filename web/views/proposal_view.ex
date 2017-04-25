@@ -6,13 +6,13 @@ defmodule TechForGoodHub.ProposalView do
     Renders HTML option tags for a given `Tag.category`.
 
       iex> tags = [
-      ...> %TechForGoodHub.Tag{name: "Last", category: "Category", slug: "category-name"},
-      ...> %TechForGoodHub.Tag{name: "first", category: "Category", slug: "category-name"}
+      ...> %{name: "Last", category: "Category", slug: "category-name", p_count: 10},
+      ...> %{name: "first", category: "Category", slug: "category-name", p_count: 20}
       ...> ]
       iex> TechForGoodHub.ProposalView.render_options(tags, "Category")
       {:safe,
-       ["<option value='category-name'>first</option>",
-        "<option value='category-name'>Last</option>"]}
+       ["<option value='category-name'>first (20)</option>",
+        "<option value='category-name'>Last (10)</option>"]}
   """
   def render_options(tags, category) do
     tags
@@ -20,7 +20,7 @@ defmodule TechForGoodHub.ProposalView do
     |> Enum.uniq
     |> Enum.sort(&(String.downcase(&1.name) < String.downcase(&2.name)))
     |> Enum.map(fn(tag) ->
-      "<option value='#{tag.slug}'>#{tag.name}</option>"
+      "<option value='#{tag.slug}'>#{tag.name} (#{tag.p_count})</option>"
     end)
     |> Phoenix.HTML.raw
   end
