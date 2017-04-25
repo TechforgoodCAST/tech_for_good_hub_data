@@ -35,4 +35,14 @@ defmodule TechForGoodHub.Tag do
       |> String.replace(~r/\W/, "-")
     end
   end
+
+  def get_with_counts(query) do
+    from tag in query,
+    join: proposal in assoc(tag, :proposals),
+    select: %{slug: tag.slug, name: tag.name, category: tag.category, p_count: count(proposal.id)},
+    group_by: tag.slug,
+    group_by: tag.name,
+    group_by: tag.category,
+    order_by: tag.name
+  end
 end
